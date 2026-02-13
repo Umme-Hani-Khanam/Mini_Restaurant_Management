@@ -6,26 +6,29 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("user"));
-    if (stored) setUser(stored);
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      setUser(storedUser);
+    }
   }, []);
 
   const login = (email, password) => {
-    const users = [
-      { role: "admin", email: "admin@gmail.com", password: "admin123" },
-      { role: "customer", email: "customer@gmail.com", password: "cust123" },
+    const validUsers = [
+      { role: "admin", email: "admin@gmail.com", password: "admin1234" },
+      { role: "customer", email: "customer@gmail.com", password: "customer1234" },
     ];
 
-    const found = users.find(
+    const foundUser = validUsers.find(
       (u) => u.email === email && u.password === password
     );
 
-    if (found) {
-      localStorage.setItem("user", JSON.stringify(found));
-      setUser(found);
-      return found;
+    if (foundUser) {
+      localStorage.setItem("user", JSON.stringify(foundUser));
+      setUser(foundUser);
+      return foundUser;
+    } else {
+      return null;
     }
-    return null;
   };
 
   const logout = () => {

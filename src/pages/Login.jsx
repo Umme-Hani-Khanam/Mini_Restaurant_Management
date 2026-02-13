@@ -2,31 +2,52 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
-export default function Login() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handle = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const user = login(email, password);
-    if (!user) return alert("Invalid");
 
-    if (user.role === "admin") navigate("/admin/dashboard");
-    else navigate("/customer/dashboard");
+    const loggedUser = login(email, password);
+
+    if (!loggedUser) {
+      alert("Invalid credentials");
+    } else {
+      if (loggedUser.role === "admin") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/customers/dashboard");
+      }
+    }
   };
 
   return (
-    <form onSubmit={handle}>
+    <div>
       <h2>Login</h2>
-      <input placeholder="email" onChange={(e) => setEmail(e.target.value)} />
-      <input
-        placeholder="password"
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button>Login</button>
-    </form>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Enter Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          type="password"
+          placeholder="Enter Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 }
+
+export default Login;

@@ -11,22 +11,23 @@ export default function App() {
       <Route path="/" element={<Login />} />
 
       <Route
-        path="/admin/dashboard"
-        element={
-          <ProtectedRoute role="admin">
-            <AdminDashboard />
-          </ProtectedRoute>
-        }
-      />
+  path="/admin/dashboard"
+  element={
+    <ProtectedRoute role="admin">
+      <AdminDashboard />
+    </ProtectedRoute>
+  }
+/>
 
-      <Route
-        path="/customer/dashboard"
-        element={
-          <ProtectedRoute role="customer">
-            <CustomerDashboard />
-          </ProtectedRoute>
-        }
-      />
+<Route
+  path="/customers/dashboard"
+  element={
+    <ProtectedRoute role="customer">
+      <CustomerDashboard />
+    </ProtectedRoute>
+  }
+/>
+
 
       <Route
         path="/admin/update/:id"
