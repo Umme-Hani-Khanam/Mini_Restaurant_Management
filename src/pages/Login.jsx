@@ -26,27 +26,35 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+ <div>
+   <div>
+      <h2 style={{textAlign:'center',fontSize:'50px'}}>Login Page </h2>
 
       <form onSubmit={handleSubmit}>
-        <input
+        <input style={{width:"25%",height:"25px"}}
           type="email"
           placeholder="Enter Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-
-        <input
+<br>
+</br>
+<br>
+</br>
+        <input style={{width:"25%",height:"25px"}}
           type="password"
           placeholder="Enter Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-
-        <button type="submit">Login</button>
+<br>
+</br>
+<br>
+</br>        <button type="submit" style={{backgroundColor:"red" , width:'150px',height:'40px'}}>Login</button>
       </form>
     </div>
+ </div>  
+ 
   );
 }
 

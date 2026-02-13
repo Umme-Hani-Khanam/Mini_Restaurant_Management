@@ -16,7 +16,7 @@ function UpdateRestaurant() {
 
     setRestaurant(found);
   }, [id]);
-  if (!restaurant) return <h2>Restaurant not found</h2>;
+    if (!restaurant) return <h2>Restaurant not found</h2>;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,6 +43,7 @@ function UpdateRestaurant() {
 
     navigate("/admin/dashboard");
   };
+
   return (
     <form onSubmit={handleUpdate}>
       <h2>Update Restaurant</h2>

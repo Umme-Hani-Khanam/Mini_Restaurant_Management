@@ -1,7 +1,7 @@
-import Navbar from "../components/Navbar";
-import AddRestaurantForm from "../components/AddRestaurantForm";
 import { useState, useEffect } from "react";
 import RestaurantCard from "../components/RestaurantCard";
+import AddRestaurantForm from "./AddRestaurantForm";
+import Navbar from "../components/Navbar";
 
 function AdminDashboard() {
   const [restaurants, setRestaurants] = useState([]);
@@ -28,30 +28,37 @@ const filteredRestaurants = restaurants.filter((r) => {
   return matchesSearch && matchesType && matchesParking;
 });
 
-  return (
-    <>
+ return (
+  <div>
+    <h2>Admin Dashboard</h2>
+
     <Navbar
-  search={search}
-  setSearch={setSearch}
-  typeFilter={typeFilter}
-  setTypeFilter={setTypeFilter}
-  parkingFilter={parkingFilter}
-  setParkingFilter={setParkingFilter}
-/>
+      search={search}
+      setSearch={setSearch}
+      typeFilter={typeFilter}
+      setTypeFilter={setTypeFilter}
+      parkingFilter={parkingFilter}
+      setParkingFilter={setParkingFilter}
+    />
 
-<AddRestaurantForm restaurants={restaurants} setRestaurants={setRestaurants} />
+    <AddRestaurantForm
+      restaurants={restaurants}
+      setRestaurants={setRestaurants}
+    />
 
-{filteredRestaurants.map((restaurant) => (
-  <RestaurantCard
-    key={restaurant.restaurantID}
-    restaurant={restaurant}
-    isAdmin={true}
-    setRestaurants={setRestaurants}
-  />
-))}
+    <div>
+      {filteredRestaurants.map((restaurant) => (
+        <RestaurantCard
+          key={restaurant.restaurantID}
+          restaurant={restaurant}
+          isAdmin={true}
+          setRestaurants={setRestaurants}
+        />
+      ))}
+    </div>
+  </div>
+);
 
-    </>
-  );
 }
 
 export default AdminDashboard;

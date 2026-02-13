@@ -5,11 +5,10 @@ import CustomerDashboard from "./pages/CustomerDashboard";
 import UpdateRestaurant from "./pages/UpdateRestaurant";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-export default function App() {
+function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
-
       <Route
   path="/admin/dashboard"
   element={
@@ -27,16 +26,9 @@ export default function App() {
     </ProtectedRoute>
   }
 />
-
-
-      <Route
-        path="/admin/update/:id"
-        element={
-          <ProtectedRoute role="admin">
-            <UpdateRestaurant />
-          </ProtectedRoute>
-        }
-      />
+<Route path="/admin/restaurants/update/:id" element={<UpdateRestaurant />} />
     </Routes>
   );
 }
+
+export default App;

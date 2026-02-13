@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-
 function RestaurantCard({ restaurant, isAdmin, setRestaurants }) {
-  const navigate = useNavigate();
+   const navigate = useNavigate();
 
   const handleDelete = () => {
+   
     if (!window.confirm("Are you sure you want to delete?")) return;
 
     const storedData = JSON.parse(localStorage.getItem("evalData")) || [];
@@ -29,7 +29,7 @@ function RestaurantCard({ restaurant, isAdmin, setRestaurants }) {
         Parking: {restaurant.parkingLot ? "Available" : "Not Available"}
       </p>
 
-     {isAdmin && (
+      {isAdmin && (
   <>
     <button onClick={() => navigate(`/admin/restaurants/update/${restaurant.restaurantID}`)}>
       Update
